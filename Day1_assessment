@@ -115,9 +115,9 @@ public class Testcase2 {
 		driver.findElement(By.xpath("//input[@class=\"desktop-searchBar\"]")).sendKeys("flowers",Keys.ENTER);
 		Thread.sleep(2000);
 		
-//		//click on the Product
-//		driver.findElement(By.xpath("(//img[@class='img-responsive'])[4]")).click();
-//		Thread.sleep(2000);
+		//click on the Product
+		driver.findElement(By.xpath("(//img[@class='img-responsive'])[4]")).click();
+		Thread.sleep(2000);
 		
 		//Add the Product to Wishlist
 		WebElement ele = driver.findElement(By.xpath("(//span[@class='myntraweb-sprite product-notWishlistedIcon sprites-notWishlisted'])"));
@@ -135,11 +135,11 @@ public class Testcase2 {
 			System.out.println("Product is added to wishlist");
 		else
 			System.out.println("Product is not added to wishlist");
-		
-		//close the browser
+
 		Thread.sleep(5000);
-		driver.quit();
+		//close the browser
 		
+		driver.quit();	
 
 	}
 
