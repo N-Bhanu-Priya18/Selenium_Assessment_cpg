@@ -57,7 +57,7 @@ public class Testcase1
 	}
 }
 
-//Testcase 2 
+//Testcase 2:
 1.Navigate to facebook application 
 2.capture the location of create new account button.
 3.Capture the Dom Attribute and dom property for email address textfield before and after entering email address
@@ -120,15 +120,15 @@ public class Testcase2
 		System.out.println(submit.getCssValue("color"));
 		System.out.println(submit.getCssValue("display"));
 		System.out.println(submit.getCssValue("font-size"));
-		
-		Thread.sleep(4000);
-		
+
+		Thread.sleep(4000);		
+
 //		close the browser
 		driver.quit();
 	}
 }
 
-//Testcase 3 
+//Testcase 3: 
 
 1.Navigate to demowebshop
 2.Identify the webelement(14.1-inch laptop)-->identify add to cart button capture the size and them click on the buuton.
@@ -136,4 +136,7 @@ public class Testcase2
 4.verify remove check box is selected or not and capture the complete information using getRect().
 5.Verify Alert message is displayed or not before and after clicking on Apply coupon button
 6.Take screenshot of image(Laptop).
+
+CODE:
+
 
