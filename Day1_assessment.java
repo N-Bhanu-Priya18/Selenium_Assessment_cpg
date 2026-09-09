@@ -1,3 +1,4 @@
+/*
 TestCase-1
 Launch SauceDemo.
 Login using the valid credentials provided on the application.
@@ -6,7 +7,7 @@ Take a screenshot of the page after scrolling.
 Save the screenshot with a meaningful name such as products-page.png.
 
 Code:
-
+*/
 package Day_1_assignment;
 
 import java.io.File;
@@ -75,12 +76,13 @@ public class TestCase1 {
 
 }
 
-
+/*
 TestCase-2
 Navigate to myntra application
 Search for any product
 Add the product to the wishlist
 Verify whether it is added or not
+*/
 
 package Day_1_assignment;
 
