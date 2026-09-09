@@ -1,8 +1,10 @@
+/*
 //Testcase 1:
 1.Navigate to the facebook application.
 2.Click on create new account button.
 3.Verify that fistname and surname textfields are aligned in same line or not.
 CODE:
+*/
 package Day_2_assignment;
 
 import java.time.Duration;
@@ -56,7 +58,7 @@ public class Testcase1
 		driver.quit();
 	}
 }
-
+/*
 //Testcase 2:
 1.Navigate to facebook application 
 2.capture the location of create new account button.
@@ -65,6 +67,7 @@ public class Testcase1
 5.capture the css properties of submit button (minimum 3).
 
 CODE:
+*/
 package Day_2_assignment;
 
 import java.time.Duration;
@@ -127,7 +130,7 @@ public class Testcase2
 		driver.quit();
 	}
 }
-
+/*
 //Testcase 3: 
 
 1.Navigate to demowebshop
@@ -138,7 +141,7 @@ public class Testcase2
 6.Take screenshot of image(Laptop).
 
 CODE:
-
+*/
 package Day_2_assignment;
 
 import java.io.File;
