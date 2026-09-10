@@ -1,6 +1,6 @@
 /*
   Testcase1:
-  1.Navigate to any appliaction
+  1.Navigate to any application
   2.count all the textfields
   3.get the size of each textfield
   4.verify my giving input to any of the textfield among all
@@ -59,6 +59,9 @@ public class Testcase3
   1.navigate to zomato appliaction
   2.click on log in
   3.enter the phone number
+  4.Locate the frame 
+  5.use switch frame to go back to main document
+  6.verify whether it has switched to main document or not
 */
 CODE:
 package Problems;
@@ -122,6 +125,11 @@ public class Testcase4
 
 /*
 	Testcase3:
+	1.Navigate to bigbasket application
+	2.search any product
+	3.Amog all suggestions select one product
+	4.add to cart one product
+	5.verify whether the product is added to cart or not
 */
 CODE:
 package Problems;
