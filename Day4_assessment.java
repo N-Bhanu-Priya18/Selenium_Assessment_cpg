@@ -1,10 +1,13 @@
 /*
   Testcase1:
+  1.Navigate to any appliaction
+  2.count all the textfields
+  3.get the size of each textfield
+  4.verify my giving input to any of the textfield among all
 */
 
 CODE:
 package Problems;
-
 import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -53,6 +56,9 @@ public class Testcase3
 
 /*
   Testcase2:
+  1.navigate to zomato appliaction
+  2.click on log in
+  3.enter the phone number
 */
 CODE:
 package Problems;
@@ -123,6 +129,7 @@ package Problems;
 import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -142,17 +149,23 @@ public class Testcase5
 		
 		//Navigate to the bigbasket application
 		driver.get("https://www.bigbasket.com/pb/boss/");
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		
 		//search for any product
 		driver.findElement(By.xpath("(//input[@placeholder='Search for Products...'])[2]")).sendKeys("Apples");
 
 		//select required product and add to cart
-		List<WebElement> allmatches=driver.findElements(By.xpath("//div[@style='position: relative; overflow: hidden; width: 100%; height: auto; min-height: 0px; max-height: 60vh;']"));
-		for(WebElement ele:allmatches)
+		List<WebElement> allmatches=driver.findElements(By.xpath("//ul[@class='overscroll-contain']/li"));
+		
+		for(WebElement ele : allmatches)
 		{
-			driver.findElement(By.xpath("//span[text()='Indian Apple - Royal Gala, Economy']/../../..//button[text()='Add']")).click();
-			Thread.sleep(2000);
+			String text = ele.getText();
+			if(text.contains("Apple - Red Delicious"))
+			{
+				ele.findElement(By.xpath(".//button[text()='Add']")).click();
+				break;
+			}
+			
 		}
 		
 		//after clicking on add and then we need to verify that it is added or not
@@ -170,8 +183,6 @@ public class Testcase5
 		driver.quit();
 	}
 }
-
-
 
 
 
