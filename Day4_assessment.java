@@ -111,3 +111,67 @@ public class Testcase4
 	}
 }
 
+/*
+	Testcase3:
+*/
+CODE:
+package Problems;
+
+//incomplete
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Testcase5 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		//Launch the browser
+		WebDriver driver=new ChromeDriver();
+		
+		//Maximize the browser window
+		driver.manage().window().maximize();
+		
+		//apply implicit wait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		
+		//Navigate to the bigbasket application
+		driver.get("https://www.bigbasket.com/pb/boss/");
+		Thread.sleep(2000);
+		
+		//search for any product
+		WebElement search=driver.findElement(By.xpath("(//input[@placeholder='Search for Products...'])[2]"));
+		search.click();
+		Thread.sleep(3000);
+		search.sendKeys("Apples");
+		
+		//select required product and add to cart
+		List<WebElement> allmatches=driver.findElements(By.xpath("//div[@style='position: relative; overflow: hidden; width: 100%; height: auto; min-height: 0px; max-height: 60vh;']"));
+		for(WebElement ele:allmatches)
+		{
+			driver.findElement(By.xpath("//span[text()='Indian Apple - Royal Gala, Economy']/../../..//button[text()='Add']")).click();
+			Thread.sleep(2000);
+		}
+		
+		//after clicking on add and then we need to verify that it is added or not
+		WebElement verify=driver.findElement(By.xpath("//p[text()='Item has been added to your basket successfully']"));
+		
+		//verify
+		if(verify.isDisplayed())
+			System.out.println(verify.getText());
+		else
+			System.out.println("Item has Not Added to your basket");
+		
+		Thread.sleep(2000);
+		
+		//close the browser
+		driver.quit();
+	}
+}
+
+
+
