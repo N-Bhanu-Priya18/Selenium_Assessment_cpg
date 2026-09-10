@@ -145,11 +145,8 @@ public class Testcase5
 		Thread.sleep(2000);
 		
 		//search for any product
-		WebElement search=driver.findElement(By.xpath("(//input[@placeholder='Search for Products...'])[2]"));
-		search.click();
-		Thread.sleep(3000);
-		search.sendKeys("Apples");
-		
+		driver.findElement(By.xpath("(//input[@placeholder='Search for Products...'])[2]")).sendKeys("Apples");
+
 		//select required product and add to cart
 		List<WebElement> allmatches=driver.findElements(By.xpath("//div[@style='position: relative; overflow: hidden; width: 100%; height: auto; min-height: 0px; max-height: 60vh;']"));
 		for(WebElement ele:allmatches)
