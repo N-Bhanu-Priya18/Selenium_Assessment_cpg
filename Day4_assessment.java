@@ -4,6 +4,7 @@
 
 CODE:
 package Problems;
+
 import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -24,21 +25,24 @@ public class Testcase3
 		//Apply implicit wait
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		
-		//Navigate to the application
+		//Navigate to the instagram application
 		driver.get("https://www.instagram.com");
 		Thread.sleep(2000);
 		
-		//count and find the sizes of all the textfield		
+		//count and find the sizes of all the textfields		
 		List<WebElement> tf=driver.findElements(By.xpath("//input[@dir='ltr']"));
+		
 		System.out.println(tf.size());//count:Gives number of elements in a list
-		for(WebElement ele:tf) 
+		
+		for(WebElement ele : tf) 
 		{
-			System.out.println(ele.getSize());
-			if(ele.getDomAttribute("name").equals("email")) 
-			{
-				ele.sendKeys("bhanupriyan91@gmail.com");
-			}		
-		}		
+		    System.out.println(ele.getSize());
+		    if("email".equals(ele.getDomAttribute("name"))) 
+		    {
+		        ele.sendKeys("bhanupriyan91@gmail.com");
+		    }
+		}	
+		
 		Thread.sleep(2000);
 		
 		//close the browser
@@ -52,7 +56,6 @@ public class Testcase3
 */
 CODE:
 package Problems;
-
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -96,7 +99,7 @@ public class Testcase4
 //		driver.findElement(By.xpath("//i[@class='sc-rbbb40-1 cLEXmC sc-re4bd0-1 bKymEa']")).click();
 //		Thread.sleep(2000);
 		
-		//switch back to main page
+		///switch back to the main document
 		driver.switchTo().defaultContent();
 		Thread.sleep(1000);
 		
@@ -117,10 +120,8 @@ public class Testcase4
 CODE:
 package Problems;
 
-//incomplete
 import java.time.Duration;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -172,6 +173,8 @@ public class Testcase5
 		driver.quit();
 	}
 }
+
+
 
 
 
