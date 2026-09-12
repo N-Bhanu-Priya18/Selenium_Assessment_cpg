@@ -108,11 +108,6 @@ public class Testcase1
         driver.findElement(By.name("firstName")).sendKeys(fn);
         driver.findElement(By.name("middleName")).sendKeys(mn);
         driver.findElement(By.name("lastName")).sendKeys(ln);
-//        WebElement employeeId = driver.findElement(By.xpath("(//input[@class='oxd-input oxd-input--active'])[2]"));
-//        employeeId.clear();
-//        Thread.sleep(2000);
-//        employeeId.sendKeys(empid);
-//        Thread.sleep(1000);
         
         WebElement employeeId = driver.findElement(By.xpath("//label[normalize-space()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//input"));
     	employeeId.click();
