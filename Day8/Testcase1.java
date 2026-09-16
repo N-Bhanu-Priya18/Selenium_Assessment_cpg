@@ -7,160 +7,117 @@ import java.util.Properties;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.openqa.selenium.By;
+//import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class Testcase1Pompage
-{
-    public static void main(String[] args) throws IOException, InterruptedException
-    {
-        // ================= COMMON DATA FROM PROPERTIES =================
-
-        FileInputStream fis = new FileInputStream(
-                "./src/test/resources/Day8/Day8_Testcase1.properties");
-
-        Properties p = new Properties();
-
-        p.load(fis);
-
-        String browser = p.getProperty("browser");
-        String url = p.getProperty("url");
-        String username = p.getProperty("username");
-        String password = p.getProperty("password");
-
-
-        // ================= TEST SPECIFIC DATA FROM EXCEL =================
-
-        FileInputStream fis2 = new FileInputStream(
-                "./src/test/resources/Day8/Day8_orangehrrm.xlsx");
-
-        Workbook wb = WorkbookFactory.create(fis2);
-
-        String fn = wb.getSheet("Sheet1").getRow(1).getCell(0).getStringCellValue();
-        String mn = wb.getSheet("Sheet1").getRow(1).getCell(1).getStringCellValue();
-        String ln = wb.getSheet("Sheet1").getRow(1).getCell(2).getStringCellValue();
-        String email = wb.getSheet("Sheet1").getRow(1).getCell(3).getStringCellValue();
-        String mobileno = wb.getSheet("Sheet1").getRow(1).getCell(4).getStringCellValue();
-        String filepath = wb.getSheet("Sheet1").getRow(1).getCell(5).getStringCellValue();
-        String dateofapp = wb.getSheet("Sheet1").getRow(1).getCell(6).getStringCellValue();
-        String candidatename = wb.getSheet("Sheet1").getRow(1).getCell(7).getStringCellValue();
-        String fromdate = wb.getSheet("Sheet1").getRow(1).getCell(8).getStringCellValue();
-        String todate = wb.getSheet("Sheet1").getRow(1).getCell(9).getStringCellValue();
-
-
-        // ================= LAUNCH BROWSER =================
-
-        WebDriver driver = null;
-
-        if(browser.equalsIgnoreCase("chrome"))
-        {
-            driver = new ChromeDriver();
-        }
-        else if(browser.equalsIgnoreCase("edge"))
-        {
-            driver = new EdgeDriver();
-        }
-        else if(browser.equalsIgnoreCase("firefox"))
-        {
-            driver = new FirefoxDriver();
-        }
-
-        driver.manage().window().maximize();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-
-        driver.get(url);
-
-
-        // ================= CREATE POM OBJECT =================
-
-        Testcase1PomUtilities qs = new Testcase1PomUtilities(driver);
-
-        Thread.sleep(2000);
-
-
-        
-
-        // ================= RECRUITMENT =================
-
-        qs.getRecruitment();
-
-        Thread.sleep(2000);
-
-        qs.getAdd();
-
-        Thread.sleep(2000);
-
-
-        // ================= ENTER TEST DATA =================
-
-        qs.getFirstname(fn);
-
-        qs.getMiddlename(mn);
-
-        qs.getLastname(ln);
-
-        qs.getVacancy();
-
-        qs.getEmail(email);
-
-        qs.getMobileNumber(mobileno);
-
-        qs.uploadFile(filepath);
-
-        qs.getDateOfApplication(dateofapp);
-
-        qs.clickSave();
-
-
-        // ================= CANDIDATES =================
-
-        Thread.sleep(3000);
-
-        qs.clickCandidates();
-
-        Thread.sleep(2000);
-
-        qs.selectJobTitle();
-
-        qs.selectCandidateVacancy();
-
-        qs.selectHiringManager();
-
-        qs.selectStatus();
-
-        qs.getCandidateName(candidatename);
-
-        qs.getApplicationDate(fromdate, todate);
-
-        qs.clickSearch();
-
-        Thread.sleep(3000);
-
-
-        // ================= VERIFY CANDIDATE =================
-
-        qs.verifyCandidate(candidatename);
-
-
-        // ================= LOGOUT =================
-
-        qs.logout();
-
-        Thread.sleep(2000);
-
-
-        // ================= CLOSE =================
-
-        wb.close();
-
-        fis2.close();
-
-        fis.close();
-
-        driver.quit();
-    }
+import Day7_AssessmentPOM.Homepage;
+import Day7_AssessmentPOM.Loginpage;
+import Day7_AssessmentPOM.Recruitmentpage;
+
+public class TestcaseImplementation {
+	public static void main(String [] args) throws IOException, InterruptedException
+	{
+		FileInputStream fis = new FileInputStream("./src/test/resources/Day7/CommonData.properties");
+		
+		Properties p = new Properties();
+		
+		p.load(fis);
+		
+		String browser = p.getProperty("browser");
+		String url = p.getProperty("url");
+		String un = p.getProperty("un");
+		String pwd = p.getProperty("pwd");
+		
+		FileInputStream fis1 = new FileInputStream("./src/test/resources/Day7/TestCase1.xlsx");
+		
+		Workbook wb = WorkbookFactory.create(fis1);
+		
+		String fn = wb.getSheet("Sheet1").getRow(1).getCell(0).getStringCellValue();
+		String mn = wb.getSheet("Sheet1").getRow(1).getCell(1).getStringCellValue();
+		String ln = wb.getSheet("Sheet1").getRow(1).getCell(2).getStringCellValue();
+		String email = wb.getSheet("Sheet1").getRow(1).getCell(3).getStringCellValue();
+		String phno = wb.getSheet("Sheet1").getRow(1).getCell(4).getStringCellValue();
+		String filepath = wb.getSheet("Sheet1").getRow(1).getCell(5).getStringCellValue();
+		String date = wb.getSheet("Sheet1").getRow(1).getCell(6).getStringCellValue();
+		String cname = wb.getSheet("Sheet1").getRow(1).getCell(7).getStringCellValue();
+		String fromdate = wb.getSheet("Sheet1").getRow(1).getCell(8).getStringCellValue();
+		String todate = wb.getSheet("Sheet1").getRow(1).getCell(9).getStringCellValue();
+		
+		
+		//launch the browser
+		WebDriver driver = null;
+		
+		if(browser.contains("chrome"))
+			driver = new ChromeDriver();
+		
+		if(browser.contains("edge"))
+			driver = new EdgeDriver();
+		
+		if(browser.contains("firefox"))
+			driver = new FirefoxDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		Loginpage login = new Loginpage(driver);
+		Homepage homepage = new Homepage(driver);
+		Recruitmentpage rec = new Recruitmentpage(driver);
+		
+		driver.get(url);
+		
+		//login
+		login.getUntf(un);
+		login.getPwdtf(pwd);
+		login.getLoginButton();
+		
+		//home page
+		homepage.getRecruitment();
+		//add
+		rec.getAddButton();
+		rec.getFntf(fn);
+		rec.getMntf(mn);
+		rec.getLntf(ln);
+		rec.getVacancy();
+		rec.getEmailtf(email);
+		rec.getPhnotf(phno);
+		rec.getFileUpload(filepath);
+//		rec.getDate(date);
+		rec.getSaveButton();
+		Thread.sleep(2000);
+		
+		//candidates
+		rec.getCandidates();
+//		rec.getJobTitle();
+		rec.getCvacancy();
+//		rec.getHiringManager();
+//		rec.getStatus();
+		rec.getCname(cname);
+//		rec.getFromDate(fromdate);
+//		rec.getToDate(todate);
+		rec.getSearchButton();
+		
+		//verify
+		if(rec.getNoRecordsFound().size()>0)
+			System.out.println("Record not found");
+		else
+			System.out.println("record found");
+		
+		Thread.sleep(4000);
+		//log out
+		homepage.getLogoutButton();
+		System.out.println("Logged out successfully");
+		
+		//close the browser
+		Thread.sleep(2000);
+		driver.quit();
+			
+		
+		
+				
+		
+	}
 }
