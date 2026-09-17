@@ -1,0 +1,67 @@
+package Day10_assessment_PomImplementation;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.testng.annotations.Test;
+
+import BaseClassUtility.Saucedemo_Baseclass;
+import Data.Day10_specificdata;
+import Day10_assessment_PomPages.Saucedemo_Cartpage;
+import Day10_assessment_PomPages.Saucedemo_Checkoutpage;
+import Day10_assessment_PomPages.Saucedemo_Homepage;
+import Day10_assessment_PomPages.Saucedemo_Orderplacedpage;
+import Day10_assessment_PomPages.Saucedemo_Overviewpage;
+
+public class Saucedemo extends Saucedemo_Baseclass
+{
+	//Login 
+	@Test
+	public void loginTest()
+	{
+		System.out.println("login test done");
+		
+	}
+	
+	@Test
+	public void orderplacementtest() throws EncryptedDocumentException, IOException, InterruptedException 
+	{
+		Day10_specificdata d = new Day10_specificdata();
+		
+		d.sdata();
+		Saucedemo_Homepage homepage = new Saucedemo_Homepage(driver);
+		Saucedemo_Cartpage cartpage = new Saucedemo_Cartpage(driver);
+		Saucedemo_Checkoutpage checkoutpage = new Saucedemo_Checkoutpage(driver);
+		Saucedemo_Orderplacedpage orderplacedpage = new Saucedemo_Orderplacedpage(driver);
+		Saucedemo_Overviewpage overviewpage = new Saucedemo_Overviewpage(driver);
+		
+		homepage.verifyProductPage(d.productpage);
+		Thread.sleep(1000);
+		homepage.getAddToCart();
+		Thread.sleep(1000);
+		homepage.getViewCart(d.oneincart);
+		Thread.sleep(1000);
+		homepage.clickCart();
+		Thread.sleep(1000);
+		System.out.println(d.saucebackup);
+		Thread.sleep(1000);
+		cartpage.getCheckOut();
+		Thread.sleep(1000);
+		checkoutpage.getFn(d.fn);
+		Thread.sleep(1000);
+		checkoutpage.getLn(d.ln);
+		Thread.sleep(1000);
+		checkoutpage.getPostalCode(d.postalcode);
+		Thread.sleep(1000);
+		checkoutpage.getClickContinue();
+		Thread.sleep(1000);
+		overviewpage.verifyoverview(d.checkout);
+		Thread.sleep(1000);
+		overviewpage.getClickFinish();
+		Thread.sleep(1000);
+		orderplacedpage.verifyorder(d.orderplaced);
+		Thread.sleep(1000);
+		
+	}
+	
+}
